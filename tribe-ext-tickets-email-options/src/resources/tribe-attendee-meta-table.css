@@ -1,3 +1,7 @@
+.woocommerce table a.event-title {
+	font-size: 1.25em;
+	font-style: italic;
+}
 .woocommerce table div.tribe-event-details {
 	font-size: .75em;
 	margin: 0 0 .75em;

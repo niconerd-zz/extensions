@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Event Tickets Extension: Additional Email Options
  * Description: Extra options for Event Tickets emails such as notifying an organizer of ticket purchase.
- * Version: 0.3.0
+ * Version: 0.4.0
  * Author: Modern Tribe, Inc.
  * Author URI: http://m.tri.be/1971
  * License: GPLv2 or later
@@ -18,7 +18,7 @@ class Tribe__Extension__Tickets_Email_Options {
 	/**
 	 * The semantic version number of this extension; should always match the plugin header.
 	 */
-	const VERSION = '0.3.0';
+	const VERSION = '0.4.0';
 
 	/**
 	 * Each plugin required by this extension
@@ -73,6 +73,8 @@ class Tribe__Extension__Tickets_Email_Options {
 
 		if ( tribe_get_option( 'ticket-extension-enable-woo-emails', false ) ) {
 			add_action( 'woocommerce_order_item_meta_start', array( $this, 'woocommerce_echo_event_info' ), 100, 4 );
+			// Hide the event title that gets added by Community Tickets, to prevent duplicates.
+			remove_action( 'woocommerce_order_item_meta_start', array( Tribe__Events__Community__Tickets__Main::instance(), 'add_order_item_details' ), 10 );
 		}
 	}
 
@@ -148,13 +150,19 @@ class Tribe__Extension__Tickets_Email_Options {
 			$event_address = tribe_get_full_address( $event );
 			$event_details = array();
 
+			// Output event title in same format as Community Tickets.
+			$event_details[] = sprintf(
+				'<a href="%1$s" class="event-title">%2$s</a>',
+				esc_attr( get_permalink( $event ) ),
+				esc_html( get_the_title( $event ) )
+			);
+
 			if ( ! empty( $event_time ) ) {
 				$event_details[] = $event_time;
 			}
 			if ( ! empty( $event_address ) ) {
 				$event_details[] = $event_address;
 			}
-
 			printf(
 				'<div class="tribe-event-details">%1$s</div>',
 				implode( $event_details, '<br />' )
