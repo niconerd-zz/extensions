@@ -73,8 +73,11 @@ class Tribe__Extension__Tickets_Email_Options {
 
 		if ( tribe_get_option( 'ticket-extension-enable-woo-emails', false ) ) {
 			add_action( 'woocommerce_order_item_meta_start', array( $this, 'woocommerce_echo_event_info' ), 100, 4 );
+
 			// Hide the event title that gets added by Community Tickets, to prevent duplicates.
-			remove_action( 'woocommerce_order_item_meta_start', array( Tribe__Events__Community__Tickets__Main::instance(), 'add_order_item_details' ), 10 );
+			if ( class_exists( 'Tribe__Events__Community__Tickets__Main' ) ) {
+				remove_action( 'woocommerce_order_item_meta_start', array( Tribe__Events__Community__Tickets__Main::instance(), 'add_order_item_details' ), 10 );
+			}
 		}
 	}
 
