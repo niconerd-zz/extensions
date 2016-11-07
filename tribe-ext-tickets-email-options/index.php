@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Event Tickets Extension: Additional Email Options
  * Description: Extra options for Event Tickets emails such as notifying an organizer of ticket purchase.
- * Version: 0.4.0
+ * Version: 0.4.1
  * Author: Modern Tribe, Inc.
  * Author URI: http://m.tri.be/1971
  * License: GPLv2 or later
@@ -18,7 +18,7 @@ class Tribe__Extension__Tickets_Email_Options {
 	/**
 	 * The semantic version number of this extension; should always match the plugin header.
 	 */
-	const VERSION = '0.4.0';
+	const VERSION = '0.4.1';
 
 	/**
 	 * Each plugin required by this extension
