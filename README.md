@@ -203,7 +203,7 @@ $this->add_required_plugin( 'Tribe__Events__Filterbar__View', '4.3' );
 $this->add_required_plugin( 'Tribe__Events__Facebook__Importer' );
 $this->add_required_plugin( 'Tribe__Events__Ical_Importer__Main' );
 $this->add_required_plugin( 'Tribe__Events__Tickets__Eventbrite__Main', '4.3' );
-$this->add_required_plugin( 'Tribe_APM', '4.3 );
+$this->add_required_plugin( 'Tribe_APM', '4.3' );
 ```
 
 If your extension requires one or more of those plugins to be present, make sure to copy the relevant line(s) inside your `construct()` function. If the extension further requires a specific minimum version, ensure that argument is specified.
